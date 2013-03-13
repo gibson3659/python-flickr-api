@@ -71,7 +71,7 @@ def call_api(api_key = None, api_secret = None, auth_handler = None, needssignin
     if not api_secret :
         api_secret = API_SECRET
     
-    if not api_key or not api_secret :
+    if (not api_key or not api_secret) and auth_handler is None:
         raise FlickrError("The Flickr API keys have not been set")
 
     clean_args(args)
