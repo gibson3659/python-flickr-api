@@ -54,10 +54,10 @@ def encode_multipart_formdata(fields, files):
         L.append('Content-Disposition: form-data; name="%s"; filename="%s"' % (key, filename))
         L.append('Content-Type: %s' % get_content_type(filename))
         L.append('')
-        L.append(value)
+        L.append(value.encode('string_escape','backslashreplace'))
     L.append('--' + BOUNDARY + '--')
     L.append('')
-    body = CRLF.join(L)
+    body = CRLF.join([element.decode('string_escape','strict') for element in L])
     content_type = 'multipart/form-data; boundary=%s' % BOUNDARY
     return content_type, body
 
