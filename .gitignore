@@ -1,2 +1,3 @@
 /build
 *.pyc
+/flickr_api.egg-info
